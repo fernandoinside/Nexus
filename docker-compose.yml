@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  neo4j:
+    image: neo4j:5.6
+    container_name: neo4j
+    ports:
+      - "7474:7474"  # Porta para interface web
+      - "7687:7687"  # Porta para o protocolo Bolt
+    volumes:
+      - neo4j_data:/data  # Persistência dos dados
+    environment:
+      - NEO4J_AUTH=none  # Inicialmente desativa a autenticação
+    command: >
+      /bin/bash -c "
+      if [ ! -f /data/db_initialized ]; then
+        echo 'Alterando a senha inicial do Neo4j...' &&
+        neo4j-admin dbms set-initial-password ${NEO4J_PASSWORD} &&
+        touch /data/db_initialized;
+      else
+        echo 'Senha já configurada.';
+      fi &&
+      neo4j console"
+    restart: always
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"  # Porta lida do .env
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data  # Persistência dos dados do Redis
+
+  app:
+    build:
+      context: ./app
+    container_name: minha_aplicacao
+    ports:
+      - "${APP_PORT}:${APP_PORT}"  # Porta lida do .env
+    depends_on:
+      - neo4j
+      - redis
+    environment:
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - NEO4J_URI=${NEO4J_URI}
+      - NEO4J_USER=${NEO4J_USER}
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD}    
+
+volumes:
+  neo4j_data:
+  redis_data:
