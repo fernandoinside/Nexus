@@ -1,0 +1,104 @@
+{
+    "ask": [
+        {
+            "work": [
+                "encontrar",
+                "pesquisar",
+                "buscar",
+                "localizar",
+                "identificar"
+            ],
+            "context": "Nexus você é minha assistente pessoal! Quero que você encontre tudo sobre {palavra}: documentação, exemplos de implementação, frameworks e novidades. Me ajude a entender o panorama completo. Capriche no resumo técnico!"
+        },
+        {
+            "work": [
+                "o que é",
+                "como funciona",
+                "como implementar",
+                "como usar",
+                "quem desenvolveu"
+            ],
+            "context": "Nexus preciso de uma explicação detalhada sobre {palavra}. Quero saber o conceito, como funciona, casos de uso e exemplos de implementação prática. Explique de forma clara e focada!"
+        },
+        {
+            "work": [
+                "explicar",
+                "detalhar",
+                "listar",
+                "documentar",
+                "escrever"
+            ],
+            "context": "Nexus escreva uma documentação bem detalhada sobre {palavra}. Organize por tópicos, incluindo conceitos básicos, uso avançado e melhores práticas. Quero algo que possa ser usado como referência técnica!"
+        },
+        {
+            "work": [
+                "história",
+                "origem",
+                "primeiros usos",
+                "evolução",
+                "como começou"
+            ],
+            "context": "Nexus você é minha assistente pessoal. Quero saber a história e a origem de {palavra}. Como foi desenvolvida, quem foram os responsáveis e como evoluiu até o que temos hoje? Explique de maneira envolvente!"
+        },
+        {
+            "work": [
+                "comparar",
+                "diferenças",
+                "vantagens",
+                "desvantagens",
+                "melhor opção"
+            ],
+            "context": "Nexus preciso de uma comparação detalhada entre {palavra} e tecnologias alternativas. Liste as diferenças, vantagens e desvantagens, com foco no impacto prático e técnico."
+        },
+        {
+            "work": [
+                "estatísticas",
+                "dados",
+                "números",
+                "gráficos",
+                "análise de uso"
+            ],
+            "context": "Nexus encontre dados e estatísticas recentes sobre {palavra}. Quero gráficos ou números concretos sobre sua adoção, desempenho ou impacto no mercado. Seja preciso!"
+        },
+        {
+            "work": [
+                "previsões",
+                "avanços",
+                "tendências",
+                "futuro",
+                "expectativas"
+            ],
+            "context": "Nexus analise e me diga as previsões e tendências futuras sobre {palavra}. Quais são os avanços esperados e como isso pode impactar o mercado ou a segurança cibernética?"
+        },
+        {
+            "work": [
+                "problemas",
+                "desafios",
+                "riscos",
+                "vulnerabilidades",
+                "falhas"
+            ],
+            "context": "Nexus explore os problemas e desafios relacionados a {palavra}. Quais são as vulnerabilidades mais comuns e os riscos associados? Quero também ideias para mitigar essas falhas."
+        },
+        {
+            "work": [
+                "exemplos",
+                "códigos",
+                "projetos",
+                "práticas",
+                "modelos"
+            ],
+            "context": "Nexus encontre exemplos e códigos práticos relacionados a {palavra}. Quero entender como isso é aplicado na prática, com projetos ou ferramentas como referência!"
+        },
+        {
+            "work": [
+                "segurança",
+                "ataques",
+                "como proteger",
+                "melhores práticas",
+                "defesa"
+            ],
+            "context": "Nexus você é minha assistente pessoal. Preciso de uma análise completa sobre {palavra} no campo de segurança cibernética. Explique os ataques mais comuns, as medidas de proteção e as melhores práticas para defesa."
+        }
+    ]
+}

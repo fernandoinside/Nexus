@@ -35,7 +35,7 @@ services:
   app:
     build:
       context: ./app
-    container_name: minha_aplicacao
+    container_name: ${AGENT_NAME}
     ports:
       - "${APP_PORT}:${APP_PORT}"  # Porta lida do .env
     depends_on:

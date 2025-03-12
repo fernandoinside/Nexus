@@ -1,54 +1,23 @@
 python-dotenv
 neo4j
 redis
-
-# Processamento de Voz
 vosk==0.3.42
 pyaudio
 pvporcupine==3.0.5
-#snowboy==1.3.0  # Requer instalação manual via https://github.com/Kitt-AI/snowboy
-#google-cloud-speech
-
-# Processamento de Linguagem Natural
 spacy==3.7.4
 sentence-transformers==2.2.2
 textblob==0.17.1
-
-# Modelos e NLP avançado (Hugging Face Transformers)
 transformers==4.38.2
 torch==2.2.0
 torchvision==0.17.0
 torchaudio==2.2.0
-#huggingface-hub==0.20.3
-
-# Dependências adicionais úteis
 emoji==2.10.1
-
-# Utilitários
 requests==2.31.0
 numpy==1.26.4
-#gTTS==2.3.1
-#playsound==1.3.0
-#pywin32==306
 pyttsx3==2.90
-
-# Logging
 colorlog==6.8.0
-
-# Machine Learning (obrigatório)
-torch==2.2.0  # Mantido para evitar conflito
-#torch==2.0.1+cu118
-#torchvision
-#torchaudio
-
-# Detecção de idioma
+torch==2.2.0 
 langdetect==1.0.9
 pynput
 SpeechRecognition
-
-#azure-cognitiveservices-speech==1.29.0
-#google-cloud-texttospeech
 openai
-#TTS
-#sounddevice==0.5.1
-#soundfile==0.12.1
