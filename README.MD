@@ -205,9 +205,9 @@ Se o Flask for o ponto de entrada da aplicação, atualize o **Dockerfile** para
 
 ## 📚 Documentação
 
-- [Documentação do Projeto](https://github.com/seu-usuario/seu-repositorio/blob/main/docs/documentacao.md)
+- [Documentação do Projeto](https://github.com/fernandoinside/Nexus/blob/main/app/docs/documentacao.md)
 
-- [Fluxograma](https://github.com/seu-usuario/seu-repositorio/blob/main/docs/fluxograma.md)
+- [Fluxograma](https://github.com/fernandoinside/Nexus/blob/main/app/docs/Fluxograma.md)
 
 ---
 
