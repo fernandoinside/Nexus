@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistente Virtual</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        button { margin: 10px 0; }
+        .form-group { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h1>Assistente Virtual - Testes</h1>
+
+    <section>
+        <h2>Teste do Agent</h2>
+        <form action="/test_agent" method="post" target="response_iframe">
+            <button type="submit">Iniciar Agent</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Teste do Chatbot</h2>
+        <form action="/test_chatbot" method="post" target="response_iframe">
+            <div class="form-group">
+                <label for="prompt">Escreva a pergunta:</label>
+                <input type="text" name="prompt" id="prompt" required>
+            </div>
+            <button type="submit">Enviar ao Chatbot</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Teste do Cache e Neo4j</h2>
+        <form action="/test_cache_neo4j" method="post" target="response_iframe">
+            <div class="form-group">
+                <label for="question">Pergunta:</label>
+                <input type="text" name="question" id="question" required>
+            </div>
+            <div class="form-group">
+                <label for="answer">Resposta:</label>
+                <input type="text" name="answer" id="answer" required>
+            </div>
+            <button type="submit">Testar Cache e Neo4j</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Teste do Reconhecimento de Voz</h2>
+        <form action="/test_recognition" method="post" target="response_iframe">
+            <button type="submit">Iniciar Reconhecimento de Voz</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Teste do Speech</h2>
+        <form action="/test_speech" method="post" target="response_iframe">
+            <div class="form-group">
+                <label for="text">Texto para falar:</label>
+                <input type="text" name="text" id="text" required>
+            </div>
+            <button type="submit">Testar Fala</button>
+        </form>
+    </section>
+
+    <iframe name="response_iframe" style="width: 100%; height: 200px; margin-top: 20px;"></iframe>
+</body>
+</html>

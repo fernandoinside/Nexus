@@ -5,10 +5,9 @@ vosk==0.3.42
 pyaudio
 pvporcupine==3.0.5
 spacy==3.7.4
+transformers==4.38.2
 sentence-transformers==2.2.2
 textblob==0.17.1
-transformers==4.38.2
-torch==2.2.0
 torchvision==0.17.0
 torchaudio==2.2.0
 emoji==2.10.1
@@ -16,8 +15,8 @@ requests==2.31.0
 numpy==1.26.4
 pyttsx3==2.90
 colorlog==6.8.0
-torch==2.2.0 
 langdetect==1.0.9
 pynput
 SpeechRecognition
 openai
+Flask==2.2.3

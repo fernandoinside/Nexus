@@ -1,4 +1,4 @@
-# test_recognition.py
+# src\test\test_recognition.py
 from src.assistent.recognition.recognition import Recognition
 
 def main():

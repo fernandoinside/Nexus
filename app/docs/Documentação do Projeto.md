@@ -126,5 +126,3 @@ def test_neo4j_client():
 - **Manutenção:** Facilidade por logs e arquitetura modular.
 
 ---
-
-Espero que esta documentação seja útil para o seu projeto. Alguma parte que eu deva aprofundar ou ajustar? 😊

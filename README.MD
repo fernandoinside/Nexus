@@ -1,7 +1,3 @@
-Aqui está um exemplo de **README.md** bem estruturado, pronto para ser publicado no seu repositório GitHub, com explicações claras e um toque de emojis para torná-lo mais atraente:
-
----
-
 # 🚀 Projeto Inteligente: Reconhecimento de Voz + NLP + Consultas Semânticas
 
 Bem-vindo ao **[nome do projeto]**, um sistema inteligente que combina **reconhecimento de voz**, **processamento de linguagem natural (NLP)** e **consultas baseadas em similaridade semântica**. Este repositório fornece um pipeline robusto para interação com usuários, utilizando diversas tecnologias de ponta!
@@ -84,6 +80,7 @@ pip install -r requirements.txt
 └───📂 app
     │   📄 Dockerfile             # Configuração para criação do container Docker
     │   📄 main.py                # Script principal do sistema
+    │   📄 flask_app.py           # Arquivo principal para inicializar o     
     │   📄 requirements.txt       # Dependências do Python
     │   
     ├───📂 docs 📘                # Documentações e guias do projeto
@@ -180,6 +177,40 @@ pip install -r requirements.txt
 
 ---
 
+## 🚀 Utilizar o Flask
+
+### Configuração do Flask no Dockerfile
+Se o Flask for o ponto de entrada da aplicação, atualize o **Dockerfile** para refletir isso:
+
+1. **Atualizar o comando de inicialização:**
+   Substitua o comando para iniciar diretamente o Flask:
+   ```dockerfile
+   CMD ["python", "flask_app.py"]
+   ```
+
+2. **Definir o Flask como servidor principal (opcional):**
+   Utilize o comando `flask run` no Dockerfile:
+   ```dockerfile
+   ENV FLASK_APP=flask_app.py
+   CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+   ```
+
+3. **Certifique-se de expor a porta correta (5000 no caso do Flask):**
+   ```dockerfile
+   ENV APP_PORT=5000
+   EXPOSE ${APP_PORT}
+   ```
+
+---
+
+## 📚 Documentação
+
+- [Documentação do Projeto](https://github.com/seu-usuario/seu-repositorio/blob/main/docs/documentacao.md)
+
+- [Fluxograma](https://github.com/seu-usuario/seu-repositorio/blob/main/docs/fluxograma.md)
+
+---
+
 ## 📈 Futuras Melhorias
 - 🔮 **Integração com serviços de IA na nuvem**.
 - 🛡️ **Autenticação e segurança avançada**.
@@ -198,5 +229,3 @@ Basta abrir uma **issue** ou enviar um **pull request**. Adoraremos ter você co
 Este projeto é licenciado sob a [MIT License](LICENSE).
 
 ---
-
-Espero que este README seja útil para você. Caso precise personalizar ou adicionar algo, é só dizer! 🚀✨
