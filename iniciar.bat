@@ -13,7 +13,6 @@ echo Gerenciamento de Contêineres Docker - Menu Principal
 echo ==========================================================
 echo 0. TESTAR APP (Ambiente de Desenvolvimento)
 echo 1. Subir Contêineres (Ambiente de Desenvolvimento)
-echo 1. Subir Contêineres (Ambiente de Desenvolvimento)
 echo 2. Subir Contêineres (Produção)
 echo 3. Derrubar Contêineres (Parar e Remover)
 echo 4. [ATENÇÃO] Derrubar Contêineres e Excluir Volumes [IMPORTANTE! APAGA SEUS DADOS DO NEO4J!]

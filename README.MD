@@ -7,13 +7,16 @@ Bem-vindo ao **[nome do projeto]**, um sistema inteligente que combina **reconhe
 ## 🎯 Objetivo do Projeto
 
 Este projeto foi criado para **responder perguntas de maneira inteligente e eficiente**, integrando:
+
 - 🎙️ **Reconhecimento de Voz** para capturar comandos do usuário.
 - 🧠 **Processamento de Linguagem Natural (NLP)** para compreender intenções.
 - 📊 **Banco de Dados Gráfico Neo4j** para consultas rápidas e baseadas em contexto.
 - 🤖 **Chatbot Avançado (GPT ou Ollama)** como fallback para perguntas novas.
 
 ### 🌟 Exemplos de Aplicação
+
 Este projeto é ideal para:
+
 - **Assistentes Virtuais**: Automação de interações com clientes.
 - **Soluções de FAQ Inteligentes**: Fornecimento de respostas personalizadas em empresas.
 - **Educação e Suporte**: Resolução de dúvidas em contextos educacionais.
@@ -38,12 +41,16 @@ O sistema foi desenvolvido com foco em modularidade e eficiência, utilizando:
 ## 🛠️ Como Configurar e Usar
 
 ### 1️⃣ Pré-requisitos
+
 Certifique-se de ter instalado:
+
 - **Python 3.8+**
 - **Docker** e **Docker Compose** (opcional, para simplificar a execução)
 
 ### 2️⃣ Como Instalar
+
 Clone o repositório e instale as dependências:
+
 ```bash
 git clone https://github.com/seu-usuario/seu-projeto.git
 cd seu-projeto
@@ -51,16 +58,21 @@ pip install -r requirements.txt
 ```
 
 ### 3️⃣ Executando o Sistema
+
 **Via Docker:**
+
 1. Configure as variáveis de ambiente no arquivo `.env`.
 2. Execute o comando:
+
    ```bash
    docker-compose up
    ```
 
 **Localmente:**
+
 1. Inicie os serviços Redis e Neo4j.
 2. Rode o script principal:
+
    ```bash
    python app/main.py
    ```
@@ -180,22 +192,26 @@ pip install -r requirements.txt
 ## 🚀 Utilizar o Flask
 
 ### Configuração do Flask no Dockerfile
+
 Se o Flask for o ponto de entrada da aplicação, atualize o **Dockerfile** para refletir isso:
 
 1. **Atualizar o comando de inicialização:**
    Substitua o comando para iniciar diretamente o Flask:
+
    ```dockerfile
    CMD ["python", "flask_app.py"]
    ```
 
 2. **Definir o Flask como servidor principal (opcional):**
    Utilize o comando `flask run` no Dockerfile:
+
    ```dockerfile
    ENV FLASK_APP=flask_app.py
    CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
    ```
 
 3. **Certifique-se de expor a porta correta (5000 no caso do Flask):**
+
    ```dockerfile
    ENV APP_PORT=5000
    EXPOSE ${APP_PORT}
@@ -205,13 +221,14 @@ Se o Flask for o ponto de entrada da aplicação, atualize o **Dockerfile** para
 
 ## 📚 Documentação
 
-- [Documentação do Projeto](https://github.com/fernandoinside/Nexus/blob/main/app/docs/documentacao.md)
+- [Documentação do Projeto](https://github.com/fernandoinside/Nexus/blob/main/docs/Documentacao.md)
 
-- [Fluxograma](https://github.com/fernandoinside/Nexus/blob/main/app/docs/Fluxograma.md)
+- [Fluxograma](https://github.com/fernandoinside/Nexus/blob/main/docs/Fluxograma.md)
 
 ---
 
 ## 📈 Futuras Melhorias
+
 - 🔮 **Integração com serviços de IA na nuvem**.
 - 🛡️ **Autenticação e segurança avançada**.
 - 🌍 **Suporte a múltiplos idiomas**.
@@ -226,6 +243,7 @@ Basta abrir uma **issue** ou enviar um **pull request**. Adoraremos ter você co
 ---
 
 ## 📜 Licença
+
 Este projeto é licenciado sob a [MIT License](LICENSE).
 
 ---
