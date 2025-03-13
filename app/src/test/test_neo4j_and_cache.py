@@ -5,12 +5,6 @@ from src.database.neo4j_client import Neo4jClient
 from src.nlp.embedding_manager import EmbeddingManager
 from src.utils.config import CACHE_CONFIG, DB_CONFIG
 
-# Configuração do log
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s: %(message)s'
-)
-
 def test_cache_manager(cache, question, answer):
     """
     Testa as funcionalidades do CacheManager.

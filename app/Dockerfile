@@ -36,6 +36,6 @@ RUN python -c "import torch" || \
     pip install torch==2.0.1+cpu --extra-index-url https://download.pytorch.org/whl/cpu
 
 # Variável de ambiente para definir o aplicativo Flask
-ENV FLASK_APP=flask_app.py
+ENV FLASK_APP=app.py
 # Comando para rodar o Flask
 CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]

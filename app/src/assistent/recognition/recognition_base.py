@@ -1,15 +1,15 @@
 # src\assistent\recognition\recognition_base.py
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
+from src.utils.config import config
 
 class RecognitionBase:
     def __init__(self):
-        engine = os.getenv("RECOGNITION_ENGINE", "vosk")
+        
+        engine = config.RECOGNITION_ENGINE
+
         if engine == "vosk":
             from src.assistent.recognition.recognition_vosk import VoskRecognition
-            model_path = os.getenv("VOSK_MODEL_PATH", "src/models/vosk-model-small-pt-0.3")
+            model_path = config.RECOGNITION_VOSK_MODEL_PATH
             self.engine = VoskRecognition(
                 model_path=model_path,
             )

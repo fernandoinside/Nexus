@@ -1,22 +1,17 @@
 import os
-from dotenv import load_dotenv
-
+from src.utils.config import config
 from src.utils.logger import logging
-
 from src.agent.agent import Agent
-
-# Carregar variáveis de ambiente do arquivo .env
-load_dotenv()
 
 def main():
     """
     Ponto de entrada principal para iniciar o Agent.
     """
-    agent_name = os.getenv("Nexos", "default_agent")
+    agent_name = config.AGENT_NAME
 
     logging.info(f"Inicializando o {agent_name}...")
 
-    timeout = os.getenv("TIMEOUT_AGENT", 15)  # Tempo padrão de 15 segundos
+    timeout = config.AGENT_TIMEOUT
 
     # Inicializa o agente
     agent = Agent(timeout=timeout)

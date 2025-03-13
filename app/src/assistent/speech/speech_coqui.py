@@ -6,9 +6,6 @@ from TTS.api import TTS
 from src.assistent.speech.speech_base import SpeechBase
 from TTS.utils.manage import ModelManager
 
-#manager = ModelManager()
-#print(manager.list_models())
-
 class CoquiSpeech(SpeechBase):
     def __init__(self):
         
@@ -24,9 +21,9 @@ class CoquiSpeech(SpeechBase):
 
         # Configurações otimizadas para português brasileiro
         self.voice_configs = {
-            'speed': 0.95,
+            'speed': 0.75,
             'sample_rate': 24000,
-            'pitch': 1.5
+            'pitch': 1.1
         }
 
     def speak(self, text: str):

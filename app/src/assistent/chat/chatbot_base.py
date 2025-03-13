@@ -1,9 +1,6 @@
 # src\assistent\chat\chatbot_base.py
-from dotenv import load_dotenv
+from src.utils.config import config
 import os
-
-# Carrega variáveis do .env
-load_dotenv()
 
 class ChatBase:
     def __init__(self):
@@ -17,10 +14,12 @@ class ChatBase:
         Decide qual engine usar com base na variável 'ASK_ENGINE' no .env.
         """        
 
-        engine = os.getenv("ASK_ENGINE", "ollama")  # Padrão: Ollama
+        engine = config.ASK_ENGINE
+        print(f"Engine selecionada: {engine}")
+        
         if engine == "ollama":
             from src.assistent.chat.chatbot_ollama import OllamaChatbot
-            model_name = os.getenv("OLLAMA_MODEL", "mistral")  # Modelo padrão: mistral
+            model_name = config.OLLAMA_MODEL
             return OllamaChatbot(model_name=model_name)
         elif engine == "gpt":
             from src.assistent.chat.chatbot_gpt import GPTChatbot

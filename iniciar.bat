@@ -1,7 +1,7 @@
 @echo off
 :: =====================================================
-:: Script de Gerenciamento de Contêineres Docker
-:: Propósito: Facilitar ações de desenvolvimento e publicação
+:: Script de Auxílio ao Desenvolvimento
+:: Propósito: Gerenciar a aplicação local, testes e Docker
 :: Autor: Fernando
 :: Data: 2025-03-12
 :: =====================================================
@@ -9,115 +9,148 @@
 :menu
 cls
 echo ==========================================================
-echo Gerenciamento de Contêineres Docker - Menu Principal
+echo Iniciar - Auxiliar no Desenvolvimento
 echo ==========================================================
-echo 0. TESTAR APP (Ambiente de Desenvolvimento)
-echo 1. Subir Contêineres (Ambiente de Desenvolvimento)
-echo 2. Subir Contêineres (Produção)
-echo 3. Derrubar Contêineres (Parar e Remover)
-echo 4. [ATENÇÃO] Derrubar Contêineres e Excluir Volumes [IMPORTANTE! APAGA SEUS DADOS DO NEO4J!]
-echo 5. Reconstruir Contêineres (Após Atualizar requirements.txt)
-echo 6. Mostrar Status dos Contêineres
-echo 7. Mostrar Logs
+echo 1. Criar ambiente virtual
+echo 2. Ativar ambiente virtual e rodar a aplicação
+echo 3. Executar todos os testes dentro do ambiente virtual
+echo 4. Executar um teste específico dentro do ambiente virtual
+echo 5. Subir contêineres Docker (Desenvolvimento)
+echo 6. Derrubar contêineres Docker
+echo 7. Mostrar status dos contêineres Docker
 echo 8. Sair
 echo ==========================================================
 set /p escolha=Escolha uma opção (1-8): 
 
-if "%escolha%" == "0" goto subir
-if "%escolha%" == "1" goto subir_dev
-if "%escolha%" == "2" goto subir_prod
-if "%escolha%" == "3" goto derrubar
-if "%escolha%" == "4" goto limpar_volumes
-if "%escolha%" == "5" goto reconstruir
-if "%escolha%" == "6" goto status
-if "%escolha%" == "7" goto logs
+if "%escolha%" == "1" goto criar_venv
+if "%escolha%" == "2" goto rodar_venv_app
+if "%escolha%" == "3" goto rodar_venv_todos_testes
+if "%escolha%" == "4" goto rodar_venv_teste_especifico
+if "%escolha%" == "5" goto subir_docker
+if "%escolha%" == "6" goto derrubar_docker
+if "%escolha%" == "7" goto status_docker
 if "%escolha%" == "8" goto sair
 echo Opção inválida. Tente novamente.
 pause
 goto menu
 
 :: =====================================================
-:: Subir os Contêineres
-:subir
-echo Subir os contêineres...
-docker-compose up -d
-pause
-goto menu
-
-:: =====================================================
-:: Subir Contêineres (Desenvolvimento)
-:subir_dev
-echo Subindo contêineres para desenvolvimento...
-docker-compose -f docker-compose.yml up --build
-pause
-goto menu
-
-:: =====================================================
-:: Subir Contêineres (Produção)
-:subir_prod
-echo Subindo contêineres para produção...
-docker-compose -f docker-compose.prod.yml up --build -d
-pause
-goto menu
-
-:: =====================================================
-:: Derrubar Contêineres
-:derrubar
-echo Derrubando contêineres...
-docker-compose down
-pause
-goto menu
-
-:: =====================================================
-:: [ATENÇÃO] Derrubar Contêineres e Excluir Volumes
-:limpar_volumes
+:: Criar ambiente virtual
+:criar_venv
 cls
-echo ==========================================================
-echo [IMPORTANTE] Você está prestes a excluir os volumes!
-echo Isso irá REMOVER TODOS OS DADOS armazenados no Neo4j.
-echo Certifique-se de que você realmente deseja prosseguir.
-echo ==========================================================
-set /p confirm=Tem certeza que deseja continuar? (s/n): 
-
-if /i "%confirm%" NEQ "s" (
-    echo Operação cancelada.
+echo Criando o ambiente virtual...
+python -m venv venv
+if errorlevel 1 (
+    echo Erro ao criar o ambiente virtual!
     pause
     goto menu
 )
-
-echo Derrubando contêineres e EXCLUINDO volumes...
-docker-compose down --volumes
+echo Ambiente virtual criado com sucesso!
+echo Instale as dependências com "pip install -r requirements.txt".
 pause
 goto menu
 
 :: =====================================================
-:: Reconstruir Contêineres (Atualizar requirements.txt)
-:reconstruir
-echo Reconstruindo contêineres (incluindo dependências)...
+:: Ativar ambiente virtual e rodar a aplicação
+:rodar_venv_app
+cls
+echo Ativando o ambiente virtual...
+call venv\Scripts\activate
+if errorlevel 1 (
+    echo Erro ao ativar o ambiente virtual!
+    pause
+    goto menu
+)
+echo Ambiente virtual ativado.
+echo Rodando a aplicação...
+python app\app.py
+deactivate
+pause
+goto menu
+
+:: =====================================================
+:: Executar todos os testes dentro do ambiente virtual
+:rodar_venv_todos_testes
+cls
+echo Ativando o ambiente virtual...
+call venv\Scripts\activate
+if errorlevel 1 (
+    echo Erro ao ativar o ambiente virtual!
+    pause
+    goto menu
+)
+echo Ambiente virtual ativado.
+echo Executando todos os testes...
+for %%f in (app\src\test\test_*.py) do (
+    echo Rodando %%f...
+    python %%f
+    echo.
+)
+deactivate
+pause
+goto menu
+
+:: =====================================================
+:: Executar um teste específico dentro do ambiente virtual
+:rodar_venv_teste_especifico
+cls
+echo Escolha um teste para executar:
+setlocal enabledelayedexpansion
+set i=0
+for %%f in (app\src\test\test_*.py) do (
+    set /a i+=1
+    echo !i!. %%f
+    set "testes[!i!]=%%f"
+)
+set /p escolha_teste=Digite o número do teste: 
+if defined testes[%escolha_teste%] (
+    set teste_selecionado=!testes[%escolha_teste%]!
+    echo Ativando o ambiente virtual...
+    call venv\Scripts\activate
+    if errorlevel 1 (
+        echo Erro ao ativar o ambiente virtual!
+        pause
+        goto menu
+    )
+    echo Ambiente virtual ativado.
+    echo Rodando !teste_selecionado!...
+    python !teste_selecionado!
+    deactivate
+) else (
+    echo Opção inválida!
+)
+pause
+goto menu
+
+:: =====================================================
+:: Subir contêineres Docker (Desenvolvimento)
+:subir_docker
+cls
+echo Subindo contêineres Docker para desenvolvimento...
+docker-compose -f docker-compose.yml up --build -d
+pause
+goto menu
+
+:: =====================================================
+:: Derrubar contêineres Docker
+:derrubar_docker
+cls
+echo Derrubando contêineres Docker...
 docker-compose down
-docker-compose build
-docker-compose up --build
 pause
 goto menu
 
 :: =====================================================
-:: Mostrar Status dos Contêineres
-:status
-echo Mostrando o status dos contêineres...
+:: Mostrar status dos contêineres Docker
+:status_docker
+cls
+echo Status dos contêineres Docker:
 docker ps -a
-pause
-goto menu
-
-:: =====================================================
-:: Mostrar Logs dos Contêineres
-:logs
-echo Exibindo logs dos contêineres em execução...
-docker-compose logs -f
 pause
 goto menu
 
 :: =====================================================
 :: Sair do Script
 :sair
-echo Saindo... Obrigado por usar o Gerenciador!
+echo Saindo... Até logo!
 exit

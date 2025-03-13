@@ -1,5 +1,10 @@
-from flask import Flask, render_template, request, jsonify
+import os
 import random
+
+from urllib.parse import quote
+from flask import Flask, render_template, request, jsonify
+
+from src.utils.config import config
 from src.agent.agent import Agent
 from src.assistent.chat.chatbot import Chatbot
 from src.assistent.recognition.recognition import Recognition
@@ -86,5 +91,5 @@ def test_speech():
         return jsonify({'error': str(e)})
 
 # Executa o Flask
-if __name__ == "__main__":
+if __name__ == "__main__":    
     app.run(debug=True)

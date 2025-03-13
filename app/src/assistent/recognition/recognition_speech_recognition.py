@@ -4,12 +4,6 @@ import logging
 import speech_recognition as sr
 from src.assistent.recognition.recognition_base import RecognitionBase
 
-
-logging.basicConfig(
-    level=logging.INFO, 
-    format='%(asctime)s - %(levelname)s: %(message)s'
-)
-
 class SpeechRecognition(RecognitionBase):
     def __init__(self):
         self.recognizer = sr.Recognizer()

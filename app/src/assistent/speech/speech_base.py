@@ -1,8 +1,6 @@
 # src\assistent\speech\speech_base.py
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
+from src.utils.config import config
 
 class SpeechBase:
     @classmethod
@@ -10,7 +8,8 @@ class SpeechBase:
         """
         Seleciona a engine de síntese de fala com base na configuração no .env.
         """
-        engine = os.getenv("SPEECH_ENGINE", "pyttsx")
+
+        engine = config.get("ASSISTENT_SPEECH_ENGINE")
         
         if engine == "coqui":
             from src.assistent.speech.speech_coqui import CoquiSpeech
@@ -19,8 +18,8 @@ class SpeechBase:
         elif engine == "azure":
             from src.assistent.speech.speech_azure import SpeechAzure
             return SpeechAzure(
-                subscription_key=os.getenv("AZURE_KEY"),
-                region=os.getenv("AZURE_REGION"),
+                subscription_key=config.get("AZURE_SUBSCRIPTION_KEY"),
+                region=config.get("AZURE_REGION"),
                 voice_name="pt-BR-FranciscaNeural"
             )
 

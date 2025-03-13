@@ -1,6 +1,6 @@
 # src\assistent\chat\chat_ollama.py
 import requests
-from src.assistent.chat.chat_base import ChatBase
+from src.assistent.chat.chatbot_base import ChatBase
 
 class OllamaChatbot(ChatBase):
     def __init__(self, model_name="mistral"):
