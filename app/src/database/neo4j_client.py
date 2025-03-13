@@ -2,7 +2,7 @@
 from neo4j import GraphDatabase
 
 class Neo4jClient:
-    def __init__(self, uri, user, password, database="neo4j"):
+    def __init__(self, uri, user, password, database="neo4j"):        
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
         self.database = database
         self.ensure_vector_index()
@@ -45,23 +45,19 @@ class Neo4jClient:
             return result.data()
 
     def ensure_vector_index(self):
-        """
-        Verifica se o índice vetorial existe. Caso contrário, cria o índice.
-        """
         with self.driver.session(database=self.database) as session:
-            result = session.run("SHOW INDEXES")
-            existing_indexes = [record["name"] for record in result]
-
-            if "document_embedding" not in existing_indexes:
-                session.run(
-                    """
-                    CREATE VECTOR INDEX document_embedding
-                    FOR (n:Document) ON (n.embedding)
-                    OPTIONS {
-                        indexConfig: {
-                            `vector.dimensions`: 384,
-                            `vector.similarity_function`: 'cosine'
-                        }
-                    }
-                    """
-                )                            
+            # First, let's create a constraint to ensure uniqueness
+            session.run(
+                """
+                CREATE CONSTRAINT IF NOT EXISTS FOR (d:Document)
+                REQUIRE d.text IS UNIQUE
+                """
+            )
+            
+            # Create a basic index on the embedding property
+            session.run(
+                """
+                CREATE INDEX IF NOT EXISTS FOR (d:Document)
+                ON (d.embedding)
+                """
+            )

@@ -10,7 +10,7 @@ class GPTChatbot(ChatBase):
         Inicializa o chatbot utilizando a API da OpenAI GPT.
         """
         print("Inicializando o chatbot GPT...")    
-        self.client = OpenAI(api_key=config['OPENAI_API_KEY'])
+        self.client = OpenAI(api_key=config.OPENAI_API_KEY)
         self.model = "gpt-3.5-turbo"  # or "gpt-4" if you have access
 
     def ask(self, prompt: str) -> str:

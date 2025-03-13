@@ -12,15 +12,17 @@ from src.assistent.speech.speech import Speech
 from src.cache.cache_manager import CacheManager
 from src.database.neo4j_client import Neo4jClient
 from src.nlp.embedding_manager import EmbeddingManager
-from src.utils.config import CACHE_CONFIG, DB_CONFIG
+from src.utils.config import config
+
+config.log_configurations()
 
 # Inicializa o app Flask
 app = Flask(__name__)
 
 # Inicializa componentes reutilizáveis
 chatbot = Chatbot()
-cache = CacheManager(**CACHE_CONFIG)
-neo4j = Neo4jClient(**DB_CONFIG)
+cache = CacheManager(**config.CACHE_CONFIG)
+neo4j = Neo4jClient(**config.DB_CONFIG)
 embedder = EmbeddingManager()
 recognition = Recognition()
 speech = Speech()

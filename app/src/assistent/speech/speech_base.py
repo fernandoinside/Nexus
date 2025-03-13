@@ -9,7 +9,7 @@ class SpeechBase:
         Seleciona a engine de síntese de fala com base na configuração no .env.
         """
 
-        engine = config.get("ASSISTENT_SPEECH_ENGINE")
+        engine = config.SPEECH_ENGINE
         
         if engine == "coqui":
             from src.assistent.speech.speech_coqui import CoquiSpeech
@@ -18,8 +18,8 @@ class SpeechBase:
         elif engine == "azure":
             from src.assistent.speech.speech_azure import SpeechAzure
             return SpeechAzure(
-                subscription_key=config.get("AZURE_SUBSCRIPTION_KEY"),
-                region=config.get("AZURE_REGION"),
+                subscription_key=config.AZURE_KEY,
+                region=config.AZURE_REGION,
                 voice_name="pt-BR-FranciscaNeural"
             )
 

@@ -6,20 +6,15 @@ from src.assistent.chat.chatbot import Chatbot
 from src.cache.cache_manager import CacheManager
 from src.database.neo4j_client import Neo4jClient
 from src.nlp.embedding_manager import EmbeddingManager
-from src.utils.config import CACHE_CONFIG, DB_CONFIG
-
-logging.basicConfig(
-    level=logging.INFO, 
-    format='%(asctime)s - %(levelname)s: %(message)s'
-)
+from src.utils.config import config
 
 class Agent:
     def __init__(self, timeout=10):
         self.speech = Speech()
         self.recognition = Recognition()
         self.chatbot = Chatbot()
-        self.cache = CacheManager(**CACHE_CONFIG)
-        self.neo4j = Neo4jClient(**DB_CONFIG)
+        self.cache = CacheManager(**config.CACHE_CONFIG)
+        self.neo4j = Neo4jClient(**config.DB_CONFIG)
         self.embedder = EmbeddingManager()        
         self.recognition_timeout = timeout
         self.is_listening = False

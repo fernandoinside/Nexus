@@ -35,7 +35,7 @@ class Config:
     PORCUPINE_ACCESS_KEY = os.getenv("PORCUPINE_ACCESS_KEY", "")
     SPEECH_ENGINE = os.getenv("SPEECH_ENGINE", "coqui")
     RECOGNITION_ENGINE = os.getenv("RECOGNITION_ENGINE", "vosk")
-    VOSK_MODEL_PATH = os.getenv("VOSK_MODEL_PATH", "src/models/vosk/vosk-model-small-pt-0.3")
+    RECOGNITION_VOSK_MODEL_PATH = os.getenv("RECOGNITION_VOSK_MODEL_PATH", "")
 
     # Configurações de APIs e serviços externos
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
@@ -87,7 +87,7 @@ class Config:
         logging.info(f"PORCUPINE_ACCESS_KEY: {Config.PORCUPINE_ACCESS_KEY}")
         logging.info(f"SPEECH_ENGINE: {Config.SPEECH_ENGINE}")
         logging.info(f"RECOGNITION_ENGINE: {Config.RECOGNITION_ENGINE}")
-        logging.info(f"VOSK_MODEL_PATH: {Config.VOSK_MODEL_PATH}")
+        logging.info(f"VOSK_MODEL_PATH: {Config.RECOGNITION_VOSK_MODEL_PATH}")
 
         # Log das configurações de APIs externas
         logging.info(f"OPENAI_API_KEY: {Config.OPENAI_API_KEY}")
